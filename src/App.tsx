@@ -1,13 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export const Component = () => {
-  const id = useRef<string>();
+  const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    id.current = "Random value!";
-  }, []);
-
-  return <div></div>;
+  return <div ref={ref} />;
 };
 
 function App() {
