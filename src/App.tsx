@@ -1,26 +1,36 @@
 import "./App.css";
-import { ComponentProps } from "react";
+import { useState } from "react";
 
-// Imagine NavBar is an external library!
+type Tag = { id: number; value: string };
 
-export const NavBar = (props: {
-  title: string;
-  links: string[];
-  children: React.ReactNode;
-}) => {
-  return <div>Some content</div>;
+export const Tags = () => {
+  const [tags, setTags] = useState<Tag[]>([]);
+  return (
+    <div>
+      {tags.map((tag) => {
+        return <div key={tag.id}>{tag.value}</div>;
+      })}
+      <button
+        onClick={() => {
+          setTags([
+            ...tags,
+            {
+              id: new Date().getTime(),
+              value: "New",
+            },
+          ]);
+        }}
+      >
+        Add Tag
+      </button>
+    </div>
+  );
 };
-
-// Your app:
-
-type NavBarProps = ComponentProps<typeof NavBar>;
 
 function App() {
   return (
     <div>
-      <NavBar title="title" links={[]}>
-        children
-      </NavBar>
+      <Tags />
     </div>
   );
 }
