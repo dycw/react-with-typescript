@@ -1,11 +1,20 @@
 import "./App.css";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import { useState } from "react";
 
-const Component = () => {
-  const handleChange = () => {};
-  return <div aria-posinset={0} onChange={handleChange}></div>;
+export type ButtonProps = { className: string };
+
+export const Button = (props: ButtonProps) => {
+  return <button className={props.className}></button>;
+};
+
+const Parent = () => {
+  return (
+    <>
+      {/* @ts-expect-error */}
+      <Button></Button>
+
+      <Button className="my-class"></Button>
+    </>
+  );
 };
 
 function App() {
