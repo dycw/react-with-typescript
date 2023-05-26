@@ -1,22 +1,26 @@
 import "./App.css";
+import { ComponentProps } from "react";
 
-export const Button = ({
-  className,
-  ...rest
-}: React.ComponentProps<"button">) => {
-  return (
-    <button {...rest} className={`default-classname ${className}`}></button>
-  );
+// Imagine NavBar is an external library!
+
+export const NavBar = (props: {
+  title: string;
+  links: string[];
+  children: React.ReactNode;
+}) => {
+  return <div>Some content</div>;
 };
 
-const Parent = () => {
-  return <Button onClick={() => {}} type="button"></Button>;
-};
+// Your app:
+
+type NavBarProps = ComponentProps<typeof NavBar>;
 
 function App() {
   return (
     <div>
-      <Parent />
+      <NavBar title="title" links={[]}>
+        children
+      </NavBar>
     </div>
   );
 }
