@@ -1,38 +1,26 @@
-import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-type Tag = { id: number; value: string };
+interface Data {
+  id: number;
+  name: string;
+}
 
-export const Tags = () => {
-  const [tags, setTags] = useState<Tag[]>([]);
-  return (
-    <div>
-      {tags.map((tag) => {
-        return <div key={tag.id}>{tag.value}</div>;
-      })}
-      <button
-        onClick={() => {
-          setTags([
-            ...tags,
-            {
-              id: new Date().getTime(),
-              value: "New",
-            },
-          ]);
-        }}
-      >
-        Add Tag
-      </button>
-    </div>
-  );
+const fetchData = () => {
+  return Promise.resolve({ id: 1, name: "John" });
+};
+
+export const Component = () => {
+  const [data, setData] = useState<Data>();
+
+  useEffect(() => {
+    fetchData().then((val) => {
+      setData(val);
+    });
+  }, []);
 };
 
 function App() {
-  return (
-    <div>
-      <Tags />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
