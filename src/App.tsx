@@ -1,22 +1,57 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-interface Data {
-  id: number;
-  name: string;
+interface TagState {
+  tagSelected: number | null;
+  tags: { id: number; value: string }[];
 }
 
-const fetchData = () => {
-  return Promise.resolve({ id: 1, name: "John" });
-};
-
-export const Component = () => {
-  const [data, setData] = useState<Data>();
-
-  useEffect(() => {
-    fetchData().then((val) => {
-      setData(val);
-    });
-  }, []);
+export const Tags = () => {
+  const [state, setState] = useState<TagState>({
+    tags: [],
+    tagSelected: null,
+  });
+  return (
+    <div>
+      {state.tags.map((tag) => {
+        return (
+          <button
+            key={tag.id}
+            onClick={() => {
+              setState(
+                (currentState): TagState => ({
+                  ...currentState,
+                  // @ts-expect-error
+                  tagselected: tag.id,
+                })
+              );
+            }}
+          >
+            {tag.value}
+          </button>
+        );
+      })}
+      <button
+        onClick={() => {
+          setState(
+            (currentState): TagState => ({
+              ...currentState,
+              tags: [
+                ...currentState.tags,
+                {
+                  id: new Date().getTime(),
+                  value: "New",
+                  // @ts-expect-error
+                  otherValue: "something",
+                },
+              ],
+            })
+          );
+        }}
+      >
+        Add Tag
+      </button>
+    </div>
+  );
 };
 
 function App() {
