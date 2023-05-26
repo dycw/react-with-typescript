@@ -1,0 +1,3 @@
+[submodule "react-typescript-tutorial"]
+	path = react-typescript-tutorial
+	url = https://github.com/total-typescript/react-typescript-tutorial

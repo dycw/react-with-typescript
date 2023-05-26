@@ -1,8 +1,3 @@
-# `template-react`
+# React with TypeScript (Matt Pocock)
 
-Template for React repositories
-
-## Getting started
-
-npm install
-npm run dev
+https://www.totaltypescript.com/tutorials/react-with-typescript
