@@ -1,9 +1,7 @@
 import "./App.css";
 
-export type ButtonProps = { className: string };
-
-export const Button = (props: ButtonProps) => {
-  return <button className={props.className}></button>;
+export const Button = (props: { children: React.ReactNode }) => {
+  return <button>{props.children}</button>;
 };
 
 const Parent = () => {
@@ -11,8 +9,7 @@ const Parent = () => {
     <>
       {/* @ts-expect-error */}
       <Button></Button>
-
-      <Button className="my-class"></Button>
+      <Button>Hello world!</Button>
     </>
   );
 };
